@@ -1,48 +1,64 @@
 import { Injectable } from '@angular/core';
-
-import { AngularFire } from 'angularfire2';
-import { Router } from '@angular/router';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 @Injectable()
 export class AddproductService {
-  list_added_products = [];
-  enableBuyButton = false;
-  
-  constructor() { }
+    products: FirebaseListObservable<any[]>;
+    list_added_products = [];
+    enableBuyButton = false;
 
-  addProduct(new_product: any): void {
-
-    var existProd = false;
-  
-    new_product['UserproductCant'] = 1;
-    if (this.list_added_products.length != 0){
-      for(var i = 0; i < this.list_added_products.length; i++ ){
-        if(this.list_added_products[i].id == new_product.id){
-          existProd = true;
-          break;
-        } 
-      }
-      if(!existProd){
-        this.list_added_products.push(new_product);
-      } else {
-        if(this.list_added_products[i].productCant > this.list_added_products[i].UserproductCant){
-          this.list_added_products[i].UserproductCant = this.list_added_products[i].UserproductCant + 1;
-        }
-        
-      }
-    } else {
-      this.list_added_products.push(new_product);
+    constructor(public af: AngularFire) {
+        this.products = this.af.database.list('/products');
     }
 
+    addProduct(new_product: any): void {
+        /* TODO: calculate total purchase price
+        */
 
-    console.log(this.list_added_products);
-  
-  }
+        var existProd = false;
+        /* this boolean variable turn to true if the poduct is already added to list,
+        * if the product doesn't exist the existProd variable keeps its value in false
+        */
 
-  // This method allow us to delete from list a selected product
-  unlistproduct(index: number): void {
-    this.list_added_products.splice((index), 1);
-  }
+        //By default we set UserproductCant in one when user adds a new product
+        new_product['UserproductCant'] = 1;
 
+        //Ensure if this.list_added_products array variable has products to iterate it
+        if (this.list_added_products.length != 0) {
 
+            for (var i = 0; i < this.list_added_products.length; i++) {
+                /*start looping through this.list_added_products to verify whether
+                * new comming product exist in this.list_added_products to turn existProd to true
+                */
+                if (this.list_added_products[i].id == new_product.id) {
+                    existProd = true;
+                    break;
+                }
+            }
+            if (!existProd) {
+                // if the new product comming doesn't exist in list_added_products,
+                // this product is pushed into list_added_products array
+                this.list_added_products.push(new_product);
+            } else {
+
+                /**
+                * if the product already exist into list_added_products find this product in
+                * list_added_products to add one unit to UserproductCant
+                */
+                if (this.list_added_products[i].productCant > this.list_added_products[i].UserproductCant) {
+                    this.list_added_products[i].UserproductCant = this.list_added_products[i].UserproductCant + 1;
+                }
+            }
+        } else {
+            /* If there is not products added into list_added_products
+            * just new product comming as fist one
+            */
+            this.list_added_products.push(new_product);
+        }
+    }
+
+    // This method allow us to delete a selected product from list_added_product array
+    unlistproduct(index: number): void {
+        this.list_added_products.splice((index), 1);
+    }
 }

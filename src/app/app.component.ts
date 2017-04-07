@@ -38,7 +38,8 @@ export class AppComponent {
     this.af.auth.logout()
       .then(()=> {
         console.log('logged out');
+
       })
   }
-  
+
 }

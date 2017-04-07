@@ -13,7 +13,8 @@ import { UserComponent } from './user/user.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent }  from './login/login.component';
 import { ResetPasswordComponent } from './resetpassword/reset-password.component';
-import { UserHistoryComponent } from './user/user-history.component';
+import { UserHistoryComponent } from './userHistory/user-history.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 import { AddproductService } from 'app/addproduct.service';
@@ -28,7 +29,8 @@ import { AppRoutingModule } from './app-routing.module';
     SignupComponent,
     LoginComponent,
     ResetPasswordComponent,
-    UserHistoryComponent
+    UserHistoryComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -17,13 +17,14 @@ export class SignupComponent {
     user = { };
 
     constructor(public af:AngularFire, private router: Router) { }
-    
+
       onSubmit(formData) {
         if(formData.valid) {
             if(formData.value.password == formData.value.pass){
                 this.user['email'] = formData.value.email;
                 this.user['name'] = formData.value.name;
                 this.user['phone'] = formData.value.phone;
+                this.user['admin'] = false;
 
                 console.log(formData.value);
                 this.af.auth.createUser({
@@ -33,7 +34,7 @@ export class SignupComponent {
                     (success) => {
                     this.af.database.object(`/user/${success.auth.uid}`).set(this.user);
                     console.log(success);
-                    this.af.auth.subscribe(auth => { 
+                    this.af.auth.subscribe(auth => {
                         if(auth) {
                             this.router.navigateByUrl('/user');
                             }

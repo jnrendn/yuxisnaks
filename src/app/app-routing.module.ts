@@ -6,7 +6,8 @@ import { UserComponent }    from './user/user.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent }   from './login/login.component';
 import { ResetPasswordComponent } from './resetpassword/reset-password.component';
-import { UserHistoryComponent } from './user/user-history.component';
+import { UserHistoryComponent } from './userHistory/user-history.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
     { path:'', redirectTo: '/product', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: 'reg', component: SignupComponent },
     { path: 'login', component: LoginComponent },
     { path: 'reset' , component: ResetPasswordComponent },
-    { path: 'history', component: UserHistoryComponent}
+    { path: 'history', component: UserHistoryComponent },
+    { path: 'admin', component: AdminComponent }
 ];
 
 @NgModule({

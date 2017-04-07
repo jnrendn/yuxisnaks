@@ -1,0 +1,13 @@
+.date {
+  font-size: 20px;
+  color: purple;
+  background-color: orange;
+}
+ .info{
+   margin: 25px;
+   padding: 10px;
+   text-align: left;
+   border: solid 1px;
+   border-top-color: black;
+   border-radius: 8px;
+ }
