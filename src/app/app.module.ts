@@ -15,6 +15,7 @@ import { LoginComponent }  from './login/login.component';
 import { ResetPasswordComponent } from './resetpassword/reset-password.component';
 import { UserHistoryComponent } from './userHistory/user-history.component';
 import { AdminComponent } from './admin/admin.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 import { AddproductService } from 'app/addproduct.service';
@@ -30,7 +31,8 @@ import { AppRoutingModule } from './app-routing.module';
     LoginComponent,
     ResetPasswordComponent,
     UserHistoryComponent,
-    AdminComponent
+    AdminComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

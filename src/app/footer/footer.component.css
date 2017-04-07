@@ -1,0 +1,16 @@
+.navbar{
+	background-color: #4f1949;
+	border-radius: 0;
+	margin: 0;
+  margin-top: 30px;
+}
+
+.navbar-brand{
+	color: #fff;
+	font-family: Open Sans, sans-serif;
+
+}
+
+.navbar-brand:hover{
+	color: #fff;
+}

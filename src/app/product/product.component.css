@@ -13,8 +13,8 @@
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.2);
 }
 
-.product-image {   
-    width: 180px; 
+.product-image {
+    width: 180px;
     height: 180px;
     text-align: center;
     padding: 10px;
@@ -29,7 +29,7 @@
 
 .name {
     font-family: 'Roboto Condensed', Helvetica;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 100;
     color: #333;
     height: 42px;
@@ -59,7 +59,7 @@
 /********************************ICONOS*************************************/
 
 .addtocart{
-    margin-left: 50px; 
+    margin-left: 50px;
     width: 30px;
     height: 30px;
     fill:orange;
