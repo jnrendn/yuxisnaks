@@ -8,6 +8,7 @@ import { LoginComponent }   from './login/login.component';
 import { ResetPasswordComponent } from './resetpassword/reset-password.component';
 import { UserHistoryComponent } from './userHistory/user-history.component';
 import { AdminComponent } from './admin/admin.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
     { path:'', redirectTo: '/product', pathMatch: 'full' },

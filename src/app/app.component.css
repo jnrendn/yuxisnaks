@@ -18,7 +18,7 @@ a:hover {
 
 
 /*-----------------------------------
-	Navbar 
+	Navbar
 -----------------------------------*/
 
 .minicart{
@@ -47,7 +47,9 @@ a:hover {
 .navbar-brand{
 	color: #fff;
 	font-family: Open Sans, sans-serif;
+	padding: 9px 15px;
 	padding-left: 32px;
+
 }
 
 .navbar-brand:hover{
@@ -60,13 +62,22 @@ button{
 	float: right;
 }
 
+.btn {
+	text-decoration: none;
+}
+
 .open>.dropdown-menu {
     display: block;
     margin-top: 40px;
 }
 
+.logo {
+	width: 30px;
+	padding-bottom: 10px;
+}
+
 /*-----------------------------------
-	Breadcrumb 
+	Breadcrumb
 -----------------------------------*/
 
 .breadcrumb > .active a{
@@ -98,7 +109,7 @@ button{
 	margin-top: 40px;
 }
 
-/*----------------------------------- 
+/*-----------------------------------
 	Main
 -----------------------------------*/
 
@@ -110,8 +121,8 @@ button{
 	margin-top:30px;
 }
 
-/*-----------------------------------  
-	Logo and description 
+/*-----------------------------------
+	Logo and description
 ----------------------------------- */
 
 
@@ -144,7 +155,7 @@ button{
 }
 
 
-/*-----------------------------------  
+/*-----------------------------------
 	Cart items list
 -----------------------------------*/
 
@@ -192,7 +203,7 @@ button{
 
 /* Items */
 
-.itemName{	
+.itemName{
 	color: #727578;
 	font-size :16px;
 	font-weight: bold;
@@ -201,7 +212,7 @@ button{
 }
 
 
-.quantity{	
+.quantity{
 	color: #4ea6bc;
 	font-size :18px;
 	font-weight: bold;
@@ -222,8 +233,8 @@ button{
 }
 
 .arrow{
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	border-left: 6px solid transparent;
 	border-right: 6px solid transparent;
 	border-top: 6px solid #858e97;
@@ -258,7 +269,7 @@ button{
 .totals .order{
 	float: right;
 	padding: 0;
-	margin-top: 40px; 
+	margin-top: 40px;
 	padding-left: 5px;
 	cursor: pointer;
 }
@@ -301,8 +312,8 @@ button{
 	margin-right: 10px;
 }
 
-/*-----------------------------------  
-	Media Queries 
+/*-----------------------------------
+	Media Queries
 ----------------------------------- */
 
 /* Tablet size */
@@ -347,10 +358,10 @@ button{
 
 @media (max-width: 768px) {
 
-	.navbar{ 
+	.navbar{
 		padding: 0px 0;
 	}
-	
+
 	.minicart{
 		margin-right: 50px;
         padding-top: 5px;
@@ -393,7 +404,7 @@ button{
 		padding-bottom:10px;
 	}
 
-	.quantity{	
+	.quantity{
 		width: 23px;
 		padding-right: 40px !important;
 	}
@@ -405,7 +416,7 @@ button{
 		right: 0;
 	}
 
-	.price{	
+	.price{
 		position: absolute;
 		right: 42px;
 	}

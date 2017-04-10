@@ -10,13 +10,18 @@ import { Router } from '@angular/router';
 export class UserComponent{
     name:any;
     authUid:any;
-    userData = { };
+    userInfo:any[] = []
+
 
     constructor(public af: AngularFire, private router:Router) {
         this.af.auth.subscribe(auth => {
             if (auth) {
-                this.userData['displayName'] = "Juan José Rendón";
-                this.userData['photoURL'] = "http://dsi-vd.github.io/patternlab-vd/images/fpo_avatar.png";
+              this.af.database.object(`user/${auth.uid}`).subscribe( info =>{
+                this.userInfo.push({
+                  'name': info.name,
+                  'phone': info.phone
+                })
+              })
             }else {
                 this.router.navigateByUrl('/product');
             }

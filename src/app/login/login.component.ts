@@ -11,16 +11,9 @@ import { Router } from '@angular/router';
 export class LoginComponent {
     state: string = '';
     error: any;
-    user: FirebaseListObservable<any[]>;
-    admin:any;
+    userInfo:any[] = [];
 
-    constructor(public af: AngularFire,private router: Router) {
-        this.af.auth.subscribe(auth => {
-        if(auth) {
-            this.router.navigateByUrl('/user');
-            }
-        });
-    }
+    constructor(public af: AngularFire,private router: Router) { }
 
 
     onSubmit(formData) {
@@ -34,15 +27,14 @@ export class LoginComponent {
                     method: AuthMethods.Password,
                 }).then(
                 (success) => {
-                    console.log(success.auth.uid);
-                    console.log(this.af.database.list(`user/${success.auth.uid}`));
-                        // if(i.admin == true){
-                        //   this.router.navigate(['/admin']);
-                        // }
-                        // else {
-                        //   this.router.navigate(['/user']);
-                        // }
-                    // }
+                  this.af.database.object(`user/${success.auth.uid}`).subscribe(item =>{
+                      if(item.admin){
+                        this.router.navigateByUrl('/admin')
+                      }else{
+                        this.router.navigateByUrl('/product');
+                      }
+                  })
+
                 }).catch(
                 (err) => {
                     alert(err.message);

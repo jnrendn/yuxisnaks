@@ -1,8 +1,9 @@
-<h1>User Profile</h1>
-<div  style="position: relative;">
+<h1>Yxuian Profile</h1>
+<div *ngFor="let info of userInfo">
     <div>
-        <h5> <span style="font-weight: bold;"> {{ userData.displayName }} </span> Hello Yuxian! </h5>
-
-        <!--<p style="color: blueviolet; text-align: left; margin-left: 55px;">Yuxian</p>    -->
+        <h5> Hello <span style="font-weight: bold;">{{info.name}} </span></h5>
+          <ul>
+            <li>Phone: {{info.phone}}</li>
+          </ul>
     </div>
-</div> 
+</div>
