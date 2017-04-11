@@ -19,7 +19,7 @@ export class AppComponent {
   state: string = '';
   hide: boolean = true;
 
-  constructor( public af: AngularFire, public router:Router ) {
+  constructor( public af: AngularFire, public router:Router, public productService: AddproductService  ) {
     this.af.auth.subscribe(auth => {
       if(auth) {
         this.name = auth;
@@ -38,7 +38,7 @@ export class AppComponent {
     this.af.auth.logout()
       .then(()=> {
         console.log('logged out');
-
+        alert("You're Logged out")
       })
   }
 

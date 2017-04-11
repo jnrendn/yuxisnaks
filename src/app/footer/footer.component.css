@@ -9,16 +9,18 @@
 .navbar-brand{
 	color: #fff;
 	font-family: Open Sans, sans-serif;
-
+  padding: 20px 15px;
 }
 
 .navbar-brand:hover{
 	color: #fff;
 }
 .logo {
-	width: 40px;
-	margin-top: 12px;
+	height: 50px;
+	margin-top: 10px;
 	border-radius: 4px;
+	float: right;
+	position: absolute;
 }
 
 .navbar-right {

@@ -1,19 +1,26 @@
 <!-- <h4>{{user1.name | async | json}}</h4> -->
-<div *ngFor="let ep of eachPurch"class=" col-md-9 col-xs-14">
+<div *ngFor="let ep of eachPurch"class="col-lg-10 col-md-10 col-sx-10">
   <h2 class="date">{{ep.date}}</h2>
-  <div class="info " *ngFor="let purchase of ep.purchases | async; let i=index">
+  <div class="info" *ngFor="let purchase of ep.purchases | async; let i=index">
+    <div class="user-info">
+      {{purchase.name}}
+    </div>
     <span>Compra #{{i+1}}</span>
     <div *ngFor="let buys of purchase">
       <ul>
         <li>
           <div>{{buys.productName}}</div>
           <div>
-            Price: {{buys.productPrice}}
+            Price: {{buys.productPrice | currency:'cop' }}
             Quantity: {{buys.UserproductCant}} -
-            Total = {{buys.UserproductCant * buys.productPrice}}
+            Total = {{buys.UserproductCant * buys.productPrice | currency:'cop'}}
           </div>
         </li>
       </ul>
     </div>
   </div>
+</div>
+<div class="total">
+  <p>Total price = {{ acumPrice | currency:'cop' }}</p>
+  <p>Total amount = {{ acumQuant }} articles </p> 
 </div>

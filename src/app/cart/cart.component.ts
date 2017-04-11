@@ -81,6 +81,7 @@ export class CartComponent implements OnInit {
                         ).then(
                             (res) => {
                                 this.productService.list_added_products = [];
+                                this.productService.calculateNumberOfitemsIncart();
                             }).catch(
                             (err) => {
                                 console.log(err);

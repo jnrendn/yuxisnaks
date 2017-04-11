@@ -6,6 +6,7 @@ export class AddproductService {
     products: FirebaseListObservable<any[]>;
     list_added_products = [];
     enableBuyButton = false;
+    totalItemsIncart: number = 0;
 
     constructor(public af: AngularFire) {
         this.products = this.af.database.list('/products');
@@ -55,10 +56,19 @@ export class AddproductService {
             */
             this.list_added_products.push(new_product);
         }
+        this.calculateNumberOfitemsIncart();
     }
 
     // This method allow us to delete a selected product from list_added_product array
     unlistproduct(index: number): void {
         this.list_added_products.splice((index), 1);
+        this.calculateNumberOfitemsIncart();
+    }
+
+    calculateNumberOfitemsIncart(): void {
+        this.totalItemsIncart = 0;
+        for (let i = 0; i < this.list_added_products.length; i++) {
+            this.totalItemsIncart += this.list_added_products[i].UserproductCant;
+        }
     }
 }

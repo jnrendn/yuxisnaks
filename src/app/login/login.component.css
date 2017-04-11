@@ -1,5 +1,7 @@
 .input-group {
     margin: 20px;
+    width: 50%;
+    align-items: center;
 }
 
 a {
@@ -8,5 +10,7 @@ a {
     text-decoration: none;
 }
 form {
-  margin-bottom: 104px;
+  text-align: center;
+  margin-bottom: 145px;
+
 }

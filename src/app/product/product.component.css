@@ -30,8 +30,9 @@
 .name {
     font-family: 'Roboto Condensed', Helvetica;
     font-size: 20px;
+    font-weight: bold;
     font-weight: 100;
-    color: #333;
+    color: #1C86EE;
     height: 42px;
     padding: 10px;
 }
@@ -45,11 +46,11 @@
 
 .original-price {
     font-family: 'Passion One', cursive;
-    font-weight: bold;
+
     color: #4f1949;
     font-size: 16px;
-    line-height: 20px;
-    font-weight: 700;
+    /*line-height: 20px;*/
+    /*font-weight: 50;*/
     padding-top: 4px;
     padding: 10px;
 }
@@ -69,4 +70,8 @@
 .addtocart:hover{
     cursor: pointer;
     fill:orangered;
+}
+
+.hide_product {
+  display: none;
 }

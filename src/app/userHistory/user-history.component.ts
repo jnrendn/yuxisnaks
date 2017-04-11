@@ -12,8 +12,8 @@ export class UserHistoryComponent implements OnInit{
   userHistory: FirebaseListObservable<any[]>;
   purchases: FirebaseListObservable<any[]>;
   eachPurch: any[] = [];
-  userName: FirebaseListObservable<any[]>;
-
+  acumPrice:number = 0;
+  acumQuant:number = 0;
 
   ngOnInit(){ }
 
@@ -24,28 +24,34 @@ export class UserHistoryComponent implements OnInit{
   getPathProducts() {
       this.af.auth.subscribe(auth => {
           if (auth) {
-              // this.userName=this.af.database.list(`user/${auth.uid}`)
-
               this.userHistory = this.af.database.list(`user/${auth.uid}/purchases`);
               this.userHistory.subscribe( date => {
                 this.eachPurch = [];
                 date.forEach( pu =>  {
-                  this.purchases = this.af.database.list(`user/${auth.uid}/purchases/${pu.$key}`);
+                  this.purchases = this.af.database.list(`user/${auth.uid}/purchases/${pu.$key}`)
+
+                  this.purchases.subscribe(purch =>{
+                    purch.forEach(item =>{
+                      item.forEach(i => {
+                        this.acumPrice += (i.productPrice * i.UserproductCant);
+                        this.acumQuant += i.UserproductCant;
+                      })
+                    })
+                  })
                   this.eachPurch.push({
                     'date': pu.$key,
                     'purchases' :this.purchases});
                 })
+                this.calculateTotal();
               })
 
           } else {
-              console.log('nope');
               this.router.navigateByUrl('/product');
           }
       });
   }
 
-  onclick1(){
-    console.log(this.userName);
+  calculateTotal(){
   }
 
 }

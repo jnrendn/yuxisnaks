@@ -5,3 +5,11 @@
 .alert {
     background: salmon;
 }
+
+form {
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+}

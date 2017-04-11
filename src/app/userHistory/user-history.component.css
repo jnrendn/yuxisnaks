@@ -11,3 +11,13 @@
    border-top-color: black;
    border-radius: 8px;
  }
+
+ .total{
+   float: right;
+   margin: 25px;
+   padding: 10px;
+   text-align: left;
+   border: solid 1px;
+   border-top-color: black;
+   border-radius: 8px;
+ }

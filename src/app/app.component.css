@@ -22,21 +22,28 @@ a:hover {
 -----------------------------------*/
 
 .minicart{
-	width: 45px;
-	height: 45px;
+		width: 45px;
+		height: 45px;
     text-align: center;
     background-color: transparent;
     padding-top: 5px;
     padding-left: 7px;
     margin-top: 3px;
     border-radius: 50%;
-	margin-right: 60px;
+		margin-right: 60px;
 }
 
 .minicart:hover{
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: white;
     cursor: pointer;
+		fill: #4f1949;
 }
+
+path:hover {
+	background-color: white;
+	fill: #4f1949;
+}
+
 
 .navbar{
 	background-color: #4f1949;
@@ -57,13 +64,29 @@ a:hover {
 }
 
 button{
-	margin-top: 7px;
-	margin-right: 5px;
-	float: right;
+
 }
 
 .btn {
+	margin-top: 7px;
+	margin-right: 5px;
+	float: right;
+	border: solid .5px;
+	border-radius: 0;
+	color: white;
 	text-decoration: none;
+	border-color: white;
+	background: #4f1949;
+}
+
+.btn:hover{
+	background: white;
+	color: #4f1949;
+}
+
+a {
+	text-decoration: none;
+
 }
 
 .open>.dropdown-menu {
@@ -72,8 +95,8 @@ button{
 }
 
 .logo {
-	width: 30px;
-	padding-bottom: 10px;
+	height: 50px;
+	padding-bottom: 15px;
 }
 
 /*-----------------------------------
@@ -97,13 +120,13 @@ button{
 }
 
 .breadcrumb{
-	margin-bottom: 100px;
+	margin-bottom: 25px;
 	background-color: #ffffff;
 }
 
 .breadcrumbBox{
 	background-color: #ffffff;
-	height: 100px;
+	height: 65px;
 	margin-bottom: 10px;
 	padding-top: 32px;
 	margin-top: 40px;
@@ -320,9 +343,6 @@ button{
 
 @media (max-width: 992px) {
 
-	.container.text-center{
-		padding: 0 15px;
-	}
 
 	.breadcrumb{
 		margin-bottom: 32px;
@@ -357,6 +377,10 @@ button{
 /* Mobile device size */
 
 @media (max-width: 768px) {
+
+	.container.text-center{
+		padding: 0 15px;
+	}
 
 	.navbar{
 		padding: 0px 0;
@@ -441,5 +465,22 @@ button{
 		margin-top: 7px;
 		margin-left: -40px;
 	}
+
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    padding: 3px 6px;
+		font-size: 10px;
+    margin-left: 5px;
+
+		z-index: 1;
+		text-shadow: none;
+		vertical-align: text-top;
+		    white-space: nowrap;
+		text-align: center;
+		background-color: #d23837;
+		border-radius: 30px;
 
 }
