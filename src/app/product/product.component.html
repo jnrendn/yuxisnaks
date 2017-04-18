@@ -1,4 +1,4 @@
-<div *ngFor="let prod of productService.products | async" class="product-card" [ngClass]="{'hide_product': prod.productCant <= 0}" >
+<!--<div *ngFor="let prod of productService.products | async" class="product-card" [ngClass]="{'hide_product': prod.productCant <= 0}" >
   <div class="product-image">
     <img style="width: 150px; height: 150px;" class="product-image" [src]="prod.productImage" alt="{{prod.productName}}">
   </div>
@@ -12,4 +12,32 @@
       </span>
     </div>
   </div>
-</div>
+</div>-->
+
+
+
+
+<div *ngFor="let prod of productService.products | async" class="card-u" [ngClass]="{'hide_product': prod.productCant <= 0}">
+
+  <div class="card_u_image">
+    <img style="width: 150px; height: 130px;" class="card_u_image" [src]="prod.productImage" alt="{{prod.productName}}">
+  </div>
+  <div class="card_u_details">
+    <strong class="details_u_name">{{prod.productName}}</strong>
+    <div class="details-u-product"> <span><span> <span ><span>Stock: </span></span>
+      <span> {{prod.productCant}} </span> </span>
+      </span>
+    </div>
+    <div class="details-u-bottom">
+      <div class="details_u_price">
+        <span>
+          <svg style="fill: #359500; width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="-11 13 24 24">
+              <path d="M-0.8,37L13,23.2V13L2.8,13L-11,26.8L-0.8,37z M9.5,15c0.8,0,1.5,0.7,1.5,1.5c0,0.8-0.7,1.5-1.5,1.5C8.7,18,8,17.3,8,16.5 C8,15.7,8.7,15,9.5,15z"></path>
+          </svg>
+        </span>
+        <span  class="card_u_price">{{prod.productPrice | currency:'COP':true}}</span>
+        <div style="margin-top: 10px; margin-bottom: 10px;">
+          <span (click)="addProductToCart(prod.$key)" class="add-to-cart">add to cart</span>
+        </div>
+      </div>
+    </div>

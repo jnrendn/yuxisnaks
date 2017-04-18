@@ -3,17 +3,17 @@ import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent {
     state: string = '';
     error: any;
-    userInfo:any[] = [];
+    userInfo: any[] = [];
 
-    constructor(public af: AngularFire,private router: Router) { }
+    constructor(public af: AngularFire, private router: Router) { }
 
 
     onSubmit(formData) {
@@ -27,13 +27,30 @@ export class LoginComponent {
                     method: AuthMethods.Password,
                 }).then(
                 (success) => {
-                  this.af.database.object(`user/${success.auth.uid}`).subscribe(item =>{
-                      if(item.admin){
-                        this.router.navigateByUrl('/admin')
-                      }else{
-                        this.router.navigateByUrl('/product');
-                      }
-                  })
+                    if (success.auth.emailVerified) {
+                        console.log('this user has email verified: ' + success.auth.emailVerified)
+                        console.log(success);
+                        this.af.database.object(`user/${success.auth.uid}`).subscribe(item => {
+                            if (item.admin) {
+                                this.router.navigateByUrl('/admin')
+                            } else {
+                                this.router.navigateByUrl('/product');
+                            }
+                        })
+
+                    } else {
+                        console.log('This user has not email verified');
+                        this.af.auth.logout().then(() => { console.log('logged out'); })
+                    }
+
+                    
+                    //     this.af.database.object(`user/${success.auth.uid}`).subscribe(item =>{
+                    //       if(item.admin){
+                    //         this.router.navigateByUrl('/admin')
+                    //       }else{
+                    //         this.router.navigateByUrl('/product');
+                    //       }
+                    //   })
 
                 }).catch(
                 (err) => {

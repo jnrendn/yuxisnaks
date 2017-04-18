@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'my-user',
-    templateUrl: './user.component.html',
-    providers: [ ActiveUser ]
+    templateUrl: './user.component.html'
 })
 
 export class UserComponent implements OnInit{
@@ -57,11 +56,14 @@ export class UserComponent implements OnInit{
     constructor(public af: AngularFire, private router:Router,public userService:ActiveUser) {
         this.af.auth.subscribe(auth => {
             if (auth) {
+                // console.log(auth.auth.emailVerified);
               this.userInfo = [];
               this.af.database.object(`user/${auth.uid}`).subscribe( info =>{
                 this.userInfo.push({
                   'name': info.name,
-                  'phone': info.phone
+                  'phone': info.phone,
+                  'email': info.email,
+                  'lastname': info.lastname
                 })
               })
             }else {

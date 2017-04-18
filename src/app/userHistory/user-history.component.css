@@ -1,7 +1,9 @@
 .date {
-  font-size: 20px;
+  font-size: 30px;
   color: purple;
-  background-color: #b3d4dc;
+  background-color: rgba(179, 212, 220, 0.2);
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
  .info{
    margin: 25px;
@@ -9,15 +11,19 @@
    text-align: left;
    border: solid 1px;
    border-top-color: black;
-   border-radius: 8px;
+   border-radius: 3px;
+   box-shadow: 0 4px 7px 0 rgba(0,0,0,0.1);
  }
 
  .total{
-   float: right;
+   position: fixed;
+   right: 10px;
    margin: 25px;
    padding: 10px;
+   font-weight: bold;
    text-align: left;
    border: solid 1px;
-   border-top-color: black;
-   border-radius: 8px;
+   background-color: rgba(0, 200, 0, 0.2);
+   border-radius: 3px;
+   box-shadow: 0 4px 7px 0 rgba(0,0,0,0.1);
  }

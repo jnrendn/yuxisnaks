@@ -1,0 +1,38 @@
+.avatar {
+    position: absolute; 
+    left: 16px; 
+    border-radius:100%; 
+    color: #fff;
+    background-color: #f39c12; 
+    margin-top: 5px; 
+    width: 50px; 
+    height: 50px; 
+    font-family: Arial; 
+    font-size: 24px; 
+    text-align: center; 
+    font-variant-caps: all-petite-caps; 
+    padding-top: 6px;
+}
+
+.user-chip {
+    height: 60px;;
+    width: 320px; 
+    background-color: #fafafa; 
+    margin-bottom: 8px; 
+    border-radius: 50px;
+
+}
+
+.user-chip:hover{
+    cursor: pointer;
+}
+
+
+.user-chip-container{
+    position: absolute; 
+    max-height: 500px;; 
+    overflow-y: auto; 
+    width: 350px; 
+    background-color: #fff; 
+    padding: 0px 60px 20px 10px; 
+}

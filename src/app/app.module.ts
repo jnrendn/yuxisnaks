@@ -20,6 +20,8 @@ import { FooterComponent } from './footer/footer.component';
 
 import { AddproductService } from 'app/addproduct.service';
 import { AppRoutingModule } from './app-routing.module';
+import { ActiveUser } from './active-user.service';
+import { SplitUserEmailPipe } from './split-user-email.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { AppRoutingModule } from './app-routing.module';
     ResetPasswordComponent,
     UserHistoryComponent,
     AdminComponent,
-    FooterComponent
+    FooterComponent,
+    SplitUserEmailPipe
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [ AddproductService ],
+  providers: [ AddproductService, ActiveUser ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

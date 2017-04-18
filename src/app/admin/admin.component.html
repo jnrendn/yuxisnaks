@@ -1,3 +1,18 @@
-<div>
-  <h1>Helo admin!!!!</h1>
+<div class="user-chip-container">
+
+  <div *ngFor="let user of users | async" class="user-chip">
+    <div class="avatar" id="{{user.$key}}">
+      {{ user.email | splitUserEmail:true:user.$key }}
+    </div>
+    <div style="position: relative;  top: 10px; ">
+      
+      <span style="font-size: 14px;">{{user.name}}</span>
+      <!--<span>$ 2031</span>-->
+    </div>
+    <div style="position: relative;  top: 10px; font-size: 13px; color: #4f1949">
+      <p>{{user.email}}</p>
+    </div>
+  </div>
+  
+
 </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router }    from '@angular/router';
-import { AngularFire, AuthMethods, AuthProviders,  } from 'angularfire2';
+import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
 
 
 @Component({
@@ -27,22 +27,34 @@ export class SignupComponent {
               this.user['phone'] = formData.value.phone;
               this.user['admin'] = false;
 
+              
+
               console.log(formData.value);
               this.af.auth.createUser({
                 email: formData.value.email,
                 password: formData.value.password
-              }).then(
+              })
+
+              .then(
                 (success) => {
-                  this.af.database.object(`/user/${success.auth.uid}`).set(this.user);
-                  console.log(success);
-                  this.af.auth.subscribe(auth => {
-                    if(auth) {
-                      this.router.navigateByUrl('/user');
-                    }
-                  });
-                }).catch(
+                  success.auth.sendEmailVerification().then( (success) => { console.log(success) }).catch( (err) => {console.error(err)})
+                }
+              )
+
+              // .then(
+              //   (success) => {
+              //     this.af.database.object(`/user/${success.auth.uid}`).set(this.user);
+              //     console.log(success);
+              //     this.af.auth.subscribe(auth => {
+              //       if(auth) {
+              //         this.router.navigateByUrl('/user');
+              //       }
+              //     });
+              //   })
+
+                .catch(
                   (err) => {
-                    console.log(err);
+                    console.error(err);
                     this.error = err;
                   })
                 }else{
