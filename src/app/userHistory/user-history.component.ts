@@ -38,11 +38,13 @@ export class UserHistoryComponent implements OnInit{
                       })
                     })
                   })
+                  
                   this.eachPurch.push({
                     'date': pu.$key,
-                    'purchases' :this.purchases});
+                    'purchases' :this.purchases
+                  });
                 })
-                this.calculateTotal();
+
               })
 
           } else {
@@ -51,7 +53,5 @@ export class UserHistoryComponent implements OnInit{
       });
   }
 
-  calculateTotal(){
-  }
 
 }

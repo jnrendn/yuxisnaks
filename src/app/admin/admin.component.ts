@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 
 @Component({
-  selector:'my-admin',
+  selector: 'my-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
@@ -11,29 +11,76 @@ import { Router } from '@angular/router';
 
 export class AdminComponent {
   users: FirebaseListObservable<any[]>;
-  
-  constructor(public af: AngularFire, private router:Router) {
-      this.af.auth.subscribe(auth => {
-          if (auth) {
-            this.getAllUsers();
-            this.af.database.object(`user/${auth.uid}`).subscribe( info =>{
-              console.log(info.admin)
-              if(info.admin == false ){
-                this.router.navigateByUrl('/product');
-              }
-            })
-          }else {
-              this.router.navigateByUrl('/product');
-              
+
+  purchaseDates: FirebaseListObservable<any[]>;
+  purchases: FirebaseListObservable<any[]>;
+  eachPurch: any[] = [];
+  acumPrice: number = 0;
+  acumQuant: number = 0;
+  actualUKey: any = "none";
+
+
+  constructor(public af: AngularFire, private router: Router) {
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        this.getAllUsers();
+        this.af.database.object(`user/${auth.uid}`).subscribe(info => {
+          console.log(info.admin)
+          if (info.admin == false) {
+            this.router.navigateByUrl('/product');
           }
-      });
+        })
+      } else {
+        this.router.navigateByUrl('/product');
+      }
+    });
 
   }
 
   getAllUsers(): void {
     this.users = this.af.database.list('/user');
-    this.users.subscribe(u => {
-      console.log(u)
+    // this.users.subscribe(u => {
+    //   console.log(u)
+    // })
+  }
+
+  userPaid(key: any): void {
+    if(confirm("are you sure this user is already paying?")){
+      this.af.database.object(`/user/${key}/purchases`).remove().then(
+        (success) => {
+          console.info('user purchase history has been deleted', success);
+        }
+      ).catch(
+        (err) => {console.error(err)}
+      );
+      
+    } 
+
+  }
+
+  getUserByKey(uKey: any): void {
+
+    this.actualUKey = uKey;
+
+    this.af.database.list(`/user/${uKey}/purchases`).subscribe(dates => {
+      this.acumPrice = 0;
+      this.acumQuant = 0;
+      this.eachPurch = [];
+      dates.forEach(date => {
+        this.purchases = this.af.database.list(`/user/${uKey}/purchases/${date.$key}`);
+        this.purchases.subscribe(purch => {
+          purch.forEach(item => {
+            item.forEach(i => {
+              this.acumPrice += (i.productPrice * i.UserproductCant);
+              this.acumQuant += i.UserproductCant;
+            })
+          })
+        })
+        this.eachPurch.push({
+          'date': date.$key,
+          'purchases': this.purchases
+        });
+      })
     })
-  } 
+  }
 }

@@ -16,7 +16,13 @@ export class SignupComponent {
     error: any;
     user = { };
 
-    constructor(public af:AngularFire, private router: Router) { }
+    constructor(public af:AngularFire, private router: Router) { 
+      // this.af.auth.subscribe(auth => {
+      //       if(auth || auth.auth.emailVerified){
+      //           this.router.navigateByUrl('/product');
+      //       }
+      //   });
+    }
 
       onSubmit(formData) {
         if(formData.valid) {
@@ -27,17 +33,26 @@ export class SignupComponent {
               this.user['phone'] = formData.value.phone;
               this.user['admin'] = false;
 
-              
-
-              console.log(formData.value);
               this.af.auth.createUser({
                 email: formData.value.email,
                 password: formData.value.password
-              })
-
-              .then(
+              }).then(
                 (success) => {
-                  success.auth.sendEmailVerification().then( (success) => { console.log(success) }).catch( (err) => {console.error(err)})
+                  this.af.auth.subscribe( auth => {
+                    if(auth){
+                      this.af.auth.logout();
+                    }
+                  })
+                  success.auth.sendEmailVerification().then( 
+                    () => { 
+                      this.af.database.object(`/user/${success.auth.uid}`).set(this.user);
+                      window.alert("We've sent you a confirmation email to: " + success.auth.email);
+                      
+                      formData.reset();
+                    }).catch( 
+                    (err) => {
+                      console.error(err)
+                    })
                 }
               )
 

@@ -212,3 +212,12 @@
 .add-to-cart:hover {
     cursor: pointer;
 }
+
+.demo-card-square.mdl-card {
+    width: 240px;
+    height: 270px;
+}
+                        
+.demo-card-square>.mdl-card__title {
+    padding: 10px;
+}
