@@ -3,7 +3,7 @@
 	General Styles
 -----------------------------------*/
 
-body{
+/*body{
 	font-size : 14px;
 	background-color: #fafafa;
 }
@@ -14,14 +14,14 @@ ul{
 
 a:hover {
 	text-decoration:none;
-}
+}*/
 
 
 /*-----------------------------------
 	Navbar
 -----------------------------------*/
 
-.minicart{
+/*.minicart{
 		width: 45px;
 		height: 45px;
     text-align: center;
@@ -36,7 +36,7 @@ a:hover {
 .minicart:hover{
     background-color: white;
     cursor: pointer;
-	
+
 }
 
 .minicart:hover  path {
@@ -97,13 +97,13 @@ a {
 .logo {
 	height: 50px;
 	padding-bottom: 15px;
-}
+}*/
 
 /*-----------------------------------
 	Breadcrumb
 -----------------------------------*/
 
-.breadcrumb > .active a{
+/*.breadcrumb > .active a{
 	color: #468595;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -130,26 +130,26 @@ a {
 	margin-bottom: 10px;
 	padding-top: 32px;
 	margin-top: 40px;
-}
+}*/
 
 /*-----------------------------------
 	Main
 -----------------------------------*/
 
-.container.text-center{
+/*.container.text-center{
 	padding: 0 32px;
 }
 
 .container.product {
 	margin-top:30px;
-}
+}*/
 
 /*-----------------------------------
 	Logo and description
 ----------------------------------- */
 
 
-.col-md-5.col-sm-12{
+/*.col-md-5.col-sm-12{
 	padding: 0;
 }
 
@@ -175,14 +175,14 @@ a {
 	width: 155px;
 	height: 120px;
 	margin:0 0 40px 60px;
-}
+}*/
 
 
 /*-----------------------------------
 	Cart items list
 -----------------------------------*/
 
-.col-md-7.col-sm-12{
+/*.col-md-7.col-sm-12{
 	padding-left: 50px ;
 	margin-bottom: 72px;
 }
@@ -197,11 +197,11 @@ a {
 
 .row span{
 	padding: 20px 0 6px 0;
-}
+}*/
 
 /* Column Captions */
 
-.columnCaptions{
+/*.columnCaptions{
 	color: #7e93a7;
 	font-size:12px;
 	text-transform: uppercase;
@@ -221,12 +221,12 @@ a {
 .columnCaptions span:last-child{
 	float: right;
 	padding-right: 72px;
-}
+}*/
 
 
 /* Items */
 
-.itemName{
+/*.itemName{
 	color: #727578;
 	font-size :16px;
 	font-weight: bold;
@@ -268,12 +268,12 @@ a {
 	font-size :18px;
 	font-weight: bold;
 	float: right;
-}
+}*/
 
 
 /* Totals */
 
-.totals{
+/*.totals{
 	background-color: #f2f6f9;
 }
 
@@ -303,12 +303,12 @@ a {
 	font-weight: bold;
 	border-radius: 2px;
 	padding: 20px 30px;
-}
+}*/
 
 
 /* Popovers */
 
-.popover{
+/*.popover{
 	border-radius: 3px;
 	box-shadow: 0 0 1px 1px rgba(0,0,0,0.2);
 	border: 0;
@@ -333,14 +333,14 @@ a {
 .glyphicon-remove{
 	color: #f06953;
 	margin-right: 10px;
-}
+}*/
 
 /*-----------------------------------
 	Media Queries
 ----------------------------------- */
 
 /* Tablet size */
-
+/*
 @media (max-width: 992px) {
 
 
@@ -371,11 +371,11 @@ a {
 		box-shadow: 0 0 0;
 	}
 
-}
+}*/
 
 
 /* Mobile device size */
-
+/*
 @media (max-width: 768px) {
 
 	.container.text-center{
@@ -453,7 +453,6 @@ a {
 		position: static;
 	}
 
-	/* Change Bootstrap's default popover to make it look nice on a mobile device */
 
 	.popover.bottom>.arrow{
 		left: auto;
@@ -481,7 +480,7 @@ a {
 	text-align: center;
 	background-color: #d23837;
 	border-radius: 30px;
-}
+}*/
 
 
 
@@ -583,6 +582,10 @@ a img {
     order: 1;
     width: 240px;
     transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.android-navigation-container:hover {
+    cursor: pointer;
 }
 
 .android-navigation {
@@ -938,6 +941,13 @@ a img {
 /**** Mobile layout ****/
 
 @media (max-width: 700px) {
+    #login-mdl-button {
+        display: none;
+    }
+
+    #login-mdl-icon {
+        display: inline-block !important;
+    }
     .android-navigation-container {
         display: none;
     }
@@ -1015,21 +1025,49 @@ a img {
 
 @media (max-width: 500px) {
     .mdl-grid {
-    padding-left: 24px;
+    padding-left: 45px;
 }
 }
 
 .avatar {
-    left: 26px; 
-    border-radius:100%; 
+    left: 26px;
+    border-radius:100%;
     color: #fff;
-    background-color: #f39c12; 
-    margin-top: 3px; 
-    width: 45px; 
-    height: 45px; 
-    font-size: 18px; 
-    text-align: center; 
+    background-color: #f39c12;
+    margin-top: 3px;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+    text-align: center;
 
 }
+
+
+#login-mdl-button {
+    margin-left: 20px !important;
+}
+
+#login-mdl-icon {
+        display: none;
+    }
+
+    .chip-user-avatar {
+
+     border-bottom-left-radius: 25px;
+     border-top-left-radius: 25px;
+     margin-right: -6px;
+     color: rgba(255, 255, 255, 0.8);
+     font-weight: bold;
+     font-size: 13px;
+     background: rgba(200, 200, 200, 0.6);
+     padding-right: 12px;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     padding-left: 10px;
+      margin-top: 2px;
+ }
+
+
+
 
  /*style="background: orange; width: 50px; height: 50px; color: #fff; font-weight: 700; font-size: 16px; text-align: center; border-radius: 50px;"*/

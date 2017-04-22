@@ -11,11 +11,11 @@
       <div class="navbar-right col-lg-2 col-md-2 col-xs-2">
         <a routerLink="/cart">
         <div class="container minicart">
-          
+
             <svg class="scart" style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" width="28" height="33" viewBox="0 0 50 50">
               <path d="M 2 2 C 0.8954305 2 0 2.8954305 0 4 C 0 5.1045695 0.8954305 6 2 6 C 3.1045695 6 4 5.1045695 4 4 L 8.65625 4 C 10.74225 4 11.54375 4.6665 12.21875 6.9375 L 20.21875 39.21875 C 20.64285 40.830043 21.124726 42.609252 22.9375 43.46875 C 22.366463 44.160427 22 45.034875 22 46 C 22 48.206 23.794 50 26 50 C 28.206 50 30 48.206 30 46 C 30 45.271107 29.779362 44.589082 29.4375 44 L 35.5625 44 C 35.220638 44.589082 35 45.271107 35 46 C 35 48.206 36.794 50 39 50 C 41.206 50 43 48.206 43 46 C 43 44.961659 42.588301 44.024169 41.9375 43.3125 C 41.972182 43.21133 42 43.113029 42 43 C 42 42.451 41.549 42 41 42 L 39 42 L 26 42 L 25.71875 42 C 23.02175 42 22.72925 40.923 22.15625 38.75 L 21.46875 36 L 39.8125 36 C 40.2265 35.999 40.605 35.72975 40.75 35.34375 L 47.9375 16.34375 C 48.0535 16.03875 47.9975 15.7065 47.8125 15.4375 C 47.6275 15.1685 47.326 15 47 15 L 16.28125 15 L 14.15625 6.40625 C 13.47725 4.11725 12.32225 2 8.65625 2 L 2 2 z M 26 44 C 27.103 44 28 44.897 28 46 C 28 47.103 27.103 48 26 48 C 24.897 48 24 47.103 24 46 C 24 44.897 24.897 44 26 44 z M 39 44 C 40.103 44 41 44.897 41 46 C 41 47.103 40.103 48 39 48 C 37.897 48 37 47.103 37 46 C 37 44.897 37.897 44 39 44 z"></path>
             </svg>
-          
+
           <b class="badge">{{productService.totalItemsIncart}}</b>
         </div>
         </a>
@@ -42,8 +42,6 @@
   </div>
   <my-footer></my-footer>
 </div>-->
-
-
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
   <!-- Header Fixed whole App-->
@@ -62,47 +60,75 @@
       <!--Shopping cart button-->
       <button style="padding: 26px;" class="mdl-button  mdl-button--icon " id="cart-button">
         <i style="font-size: 25px;" class="material-icons">shopping_cart</i>
-        <i class="material-icons mdl-badge mdl-badge--overlap" [attr.data-badge]="productService.totalItemsIncart"></i>
+        <i *ngIf="productService.totalItemsIncart != 0" class="material-icons mdl-badge mdl-badge--overlap" [attr.data-badge]="productService.totalItemsIncart"></i>
       </button>
       <!--hidden div for cart-button icon-->
-      <div style="width: 280px; max-height: 320px; overflow-y: auto; color: black" class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="cart-button">
-       <app-cart></app-cart>
+      <div style="width: 280px; max-height: 320px; overflow-y: auto; color: black" class="mdl-menu mdl-js-menu mdl-menu--bottom-right"
+        for="cart-button">
+        <app-cart></app-cart>
       </div>
 
       <!--User purchase history button-->
       <button style="padding: 26px;" class="mdl-button  mdl-button--icon " id="history-button">
         <i class="material-icons">
             <svg style="fill: #fff; margin-bottom: 30px;" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26">
-                <path 
-                  d="M 4 0 C 3.449 0 3 0.449 3 1 L 3 3 L 3.5 3 C 4.878 3 6 4.121 6 5.5 C 6 6.879 4.878 8 3.5 8 L 3 8 L 3 11 L 3.5 11 C 4.878 11 
-                  6 12.121 6 13.5 C 6 14.879 4.878 16 3.5 16 L 3 16 L 3 19 L 3.5 19 C 4.878 19 6 20.121 6 21.5 C 6 22.879 4.878 24 3.5 24 L 3 24 L 3 
-                  25 C 3 25.551 3.449 26 4 26 L 24 26 C 24.551 26 25 25.551 25 25 L 25 1 C 25 0.449 24.551 0 24 0 L 4 0 z M 1.5 4 C 0.671 4 0 4.672 0 
-                  5.5 C 0 6.328 0.671 7 1.5 7 L 3.5 7 C 4.329 7 5 6.328 5 5.5 C 5 4.672 4.329 4 3.5 4 L 1.5 4 z M 10 4 L 20 4 C 20.551 4 21 4.449 21 
-                  5 L 21 12 C 21 12.551 20.551 13 20 13 L 10 13 C 9.449 13 9 12.551 9 12 L 9 5 C 9 4.449 9.449 4 10 4 z M 11.8125 6 A 1.001098 1.001098 
-                  0 0 0 12 8 L 18 8 A 1.0001 1.0001 0 1 0 18 6 L 12 6 A 1.0001 1.0001 0 0 0 11.90625 6 A 1.001098 1.001098 0 0 0 11.8125 6 z M 11.8125 
-                  9 A 1.001098 1.001098 0 0 0 12 11 L 18 11 A 1.0001 1.0001 0 1 0 18 9 L 12 9 A 1.0001 1.0001 0 0 0 11.90625 9 A 1.001098 1.001098 0 0 0 
-                  11.8125 9 z M 1.5 12 C 0.671 12 0 12.672 0 13.5 C 0 14.328 0.671 15 1.5 15 L 3.5 15 C 4.329 15 5 14.328 5 13.5 C 5 12.672 4.329 12 3.5 12 
-                  L 1.5 12 z M 1.5 20 C 0.671 20 0 20.672 0 21.5 C 0 22.328 0.671 23 1.5 23 L 3.5 23 C 4.329 23 5 22.328 5 21.5 C 5 20.672 4.329 20 3.5 20 
+                <path
+                  d="M 4 0 C 3.449 0 3 0.449 3 1 L 3 3 L 3.5 3 C 4.878 3 6 4.121 6 5.5 C 6 6.879 4.878 8 3.5 8 L 3 8 L 3 11 L 3.5 11 C 4.878 11
+                  6 12.121 6 13.5 C 6 14.879 4.878 16 3.5 16 L 3 16 L 3 19 L 3.5 19 C 4.878 19 6 20.121 6 21.5 C 6 22.879 4.878 24 3.5 24 L 3 24 L 3
+                  25 C 3 25.551 3.449 26 4 26 L 24 26 C 24.551 26 25 25.551 25 25 L 25 1 C 25 0.449 24.551 0 24 0 L 4 0 z M 1.5 4 C 0.671 4 0 4.672 0
+                  5.5 C 0 6.328 0.671 7 1.5 7 L 3.5 7 C 4.329 7 5 6.328 5 5.5 C 5 4.672 4.329 4 3.5 4 L 1.5 4 z M 10 4 L 20 4 C 20.551 4 21 4.449 21
+                  5 L 21 12 C 21 12.551 20.551 13 20 13 L 10 13 C 9.449 13 9 12.551 9 12 L 9 5 C 9 4.449 9.449 4 10 4 z M 11.8125 6 A 1.001098 1.001098
+                  0 0 0 12 8 L 18 8 A 1.0001 1.0001 0 1 0 18 6 L 12 6 A 1.0001 1.0001 0 0 0 11.90625 6 A 1.001098 1.001098 0 0 0 11.8125 6 z M 11.8125
+                  9 A 1.001098 1.001098 0 0 0 12 11 L 18 11 A 1.0001 1.0001 0 1 0 18 9 L 12 9 A 1.0001 1.0001 0 0 0 11.90625 9 A 1.001098 1.001098 0 0 0
+                  11.8125 9 z M 1.5 12 C 0.671 12 0 12.672 0 13.5 C 0 14.328 0.671 15 1.5 15 L 3.5 15 C 4.329 15 5 14.328 5 13.5 C 5 12.672 4.329 12 3.5 12
+                  L 1.5 12 z M 1.5 20 C 0.671 20 0 20.672 0 21.5 C 0 22.328 0.671 23 1.5 23 L 3.5 23 C 4.329 23 5 22.328 5 21.5 C 5 20.672 4.329 20 3.5 20
                   L 1.5 20 z">
                 </path>
             </svg>
         </i>
         <i class="material-icons mdl-badge mdl-badge--overlap" data-badge="2"></i>
       </button>
-      <div style="width: 250px; max-height: 500px; overflow-y: auto; color: black" class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="history-button">
-       <my-history></my-history>
+      <div style="width: 250px; max-height: 500px; overflow-y: auto; color: black" class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect"
+        for="history-button">
+        <my-history></my-history>
       </div>
 
+      <!--<button id="user-button" class="mdl-button mdl-js-button mdl-button--icon mdl-layout--small-screen-only">
+          <i class="material-icons">more_vert</i>
+      </button>-->
+
+      <!--Login Icon-->
+      <button *ngIf="hide" id="login-mdl-icon" class="mdl-button mdl-js-button mdl-button--icon mdl-layout--small-screen-only">
+          <i class="material-icons">more_vert</i>
+      </button>
+      <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="login-mdl-icon">
+        <li (click)="showAlert()" class="mdl-menu__item">Sign In</li>
+      </ul>
+
+      <!--Login button-->
+      <button *ngIf="hide" (click)="showAlert()" id="login-mdl-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        login
+      </button>
+
+
+
+
       <!--Avatar to show user-->
-      <div class="android-navigation-container">
-        <nav class="android-navigation mdl-navigation">
-          <span style=" border-bottom-left-radius: 25px; border-top-left-radius: 25px; margin-right: -6px; color: rgba(255, 255, 255, 0.8); font-weight: bold; font-size: 13px; background: rgba(200, 200, 200, 0.6); padding-right: 12px; padding-top: 5px; padding-bottom: 5px; padding-left: 10px; margin-top: 2px;">Yuxian!, juan.villa</span>
+      <div [hidden]="hide" class="android-navigation-container mdl-layout--large-screen-only">
+        <nav  id="user-button" class="android-navigation mdl-navigation">
+          <span class="chip-user-avatar">Yuxian!, juan.villa </span>
           <div class="avatar">
             <div style="padding-top: 12px;">JV</div>
           </div>
+          <i style="font-size: 18px; color:#fff !important;" class="material-icons">&#xE5C5;</i>
         </nav>
       </div>
-      
+      <ul  class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="user-button">
+        <li class="mdl-menu__item">Profile</li>
+        <li class="mdl-menu__item">Purchase History</li>
+        <li (click)="logout()" class="mdl-menu__item">Logout</li>
+      </ul>
+
 
 
     </div>

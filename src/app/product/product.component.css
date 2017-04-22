@@ -198,9 +198,9 @@
 
 
 .add-to-cart {
-    color: #4f1949; 
-    border-radius: 2px; 
-    padding: 3px 12px 3px 12px; 
+    color: #4f1949;
+    border-radius: 2px;
+    padding: 3px 12px 3px 12px;
     border: 1px solid #4f1949;
     font-size: 14px;
     font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -214,10 +214,11 @@
 }
 
 .demo-card-square.mdl-card {
-    width: 240px;
-    height: 270px;
+    width: 230px;
+    height: 250px;
+      padding-right: 20px;
 }
-                        
+
 .demo-card-square>.mdl-card__title {
     padding: 10px;
 }

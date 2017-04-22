@@ -1,16 +1,6 @@
-.input-group {
-    margin: 20px;
 
-    align-items: center;
-}
 
-a {
-    display: block;
-    margin-top: 25px;
-    text-decoration: none;
-}
-form {
-  text-align: center;
-  margin-bottom: 145px;
-
+.p {
+  cursor: pointer;
+   color: #0388ca;
 }

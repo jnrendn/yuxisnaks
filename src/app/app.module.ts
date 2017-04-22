@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { MdlModule } from "angular2-mdl";
+
 import { AngularFireModule } from 'angularfire2';
 import { firebaseConfig } from 'environments/firebase.config';
 
@@ -42,9 +44,12 @@ import { SplitUserEmailPipe } from './split-user-email.pipe';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    MdlModule
+    
   ],
   providers: [ AddproductService, ActiveUser ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginComponent]
 })
 export class AppModule { }
