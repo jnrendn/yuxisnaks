@@ -25,6 +25,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ActiveUser } from './active-user.service';
 import { SplitUserEmailPipe } from './split-user-email.pipe';
 
+import { MdlPopoverModule } from "@angular-mdl/popover";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,8 +47,8 @@ import { SplitUserEmailPipe } from './split-user-email.pipe';
     HttpModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    MdlModule
-    
+    MdlModule,
+    MdlPopoverModule
   ],
   providers: [ AddproductService, ActiveUser ],
   bootstrap: [AppComponent],

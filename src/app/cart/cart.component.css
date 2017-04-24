@@ -17,13 +17,20 @@
 }
 
 .span_unlist_prod {
-    width: 15px; 
-    height: 15px; 
-    fill: red; 
-    float: right; 
+    width: 15px;
+    height: 15px;
+    fill: red;
+    float: right;
     margin-top: 18px;
 }
 
 .span_unlist_prod:hover {
     cursor: pointer;
+}
+
+.mdl-badge[data-badge]:after {
+    background: rgba(79, 25, 73,0.7) !important;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
 }

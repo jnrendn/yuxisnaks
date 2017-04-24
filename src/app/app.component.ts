@@ -12,6 +12,9 @@ import { MdlDialogService } from "angular2-mdl";
 import { LoginComponent } from "./login/login.component";
 import { MdlDialogReference } from "angular2-mdl";
 
+import { MdlSnackbarService } from "angular2-mdl";
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,7 +31,8 @@ export class AppComponent {
     public router: Router,
     public productService: AddproductService,
     public userServ: ActiveUser,
-    public dialog: MdlDialogService) {
+    public dialog: MdlDialogService,
+     private mdlSnackbarService: MdlSnackbarService) {
     this.af.auth.subscribe(auth => {
 
       if (auth) {
@@ -48,9 +52,14 @@ export class AppComponent {
       .subscribe(() => this.router.navigate(['/']));
     this.af.auth.logout()
       .then(() => {
+        this.showLoggedOutSnack();
         console.log('logged out');
       })
   }
+
+  showLoggedOutSnack() {
+      this.mdlSnackbarService.showToast("You are legged out now", 4000);
+    }
 
   showAlert() {
 
@@ -66,28 +75,5 @@ export class AppComponent {
     pDialog.subscribe((dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);
     });
-
-    // let pDialog = this.dialog.showCustomDialog({
-    //   title: 'Your choice?',
-    //   message: 'What drink do you prefer to your meal?',
-    //   actions: [
-    //     {
-    //       handler: () => { console.log('Coke'); },
-    //       text: 'One Coke' ,
-    //       isClosingAction: true
-    //     },
-    //     {
-    //       handler: () => { console.log('Vine'); },
-    //       text: 'A bottle of vine'
-    //     },
-    //     {
-    //       handler: () => { console.log('Beer'); },
-    //       text: 'A pint of beer'
-    //     }
-    //   ],
-    //   fullWidthAction: true,
-    //   isModal: false
-    // });
-    // pDialog.subscribe( (dialogReference) => console.log('dialog visible', dialogReference) );
   }
 }

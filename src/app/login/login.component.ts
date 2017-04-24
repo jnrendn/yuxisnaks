@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 
+import { MdlSnackbarService } from "angular2-mdl";
+
 import { MdlDialogReference } from "angular2-mdl";
 import * as Firebase from 'firebase';
 
@@ -19,7 +21,7 @@ export class LoginComponent {
 
     // Login info
     username: any = 'juan.villa@yuxiglobal.com';
-    password: any = '11208444';
+    password: any = '';
 
     // Sign Up  Info
     email: string;
@@ -37,7 +39,9 @@ export class LoginComponent {
     Register: boolean = false;
     Reset: boolean = false;
 
-    constructor(public af: AngularFire, private router: Router, public dialog: MdlDialogReference) {
+    constructor(public af: AngularFire,
+                            private router: Router,
+                            public dialog: MdlDialogReference) {
         this.dialog.onHide().subscribe((user) => {
             if (user) {
                 console.log('authenticated user', user);
