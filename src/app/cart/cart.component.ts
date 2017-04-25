@@ -34,7 +34,7 @@ export class CartComponent implements OnInit {
         this.productService.enableBuyButton = false;
       }
     });
-    console.log(this.authuser);
+    // console.log(this.authuser);
   }
 
   addtocart(e: any) {
@@ -51,6 +51,13 @@ export class CartComponent implements OnInit {
   showLoginSnackbar() {
     this.mdlSnackbarService.showSnackbar({
       message: 'You must be logged in to make a purchase',
+      timeout: 5000
+    });
+  }
+
+  showPwdNoMatch() {
+    this.mdlSnackbarService.showSnackbar({
+      message: "Password don't match",
       timeout: 5000
     });
   }

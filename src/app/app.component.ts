@@ -3,7 +3,7 @@ import "rxjs/add/operator/first";
 
 import { Component } from '@angular/core';
 
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { AddproductService } from './addproduct.service';
 import { ActiveUser } from "./active-user.service";
@@ -23,9 +23,11 @@ import { MdlSnackbarService } from "angular2-mdl";
 })
 export class AppComponent {
 
-  name: any;
+  admin: boolean;
   state: string = '';
   hide: boolean;
+  user: any[] = [];
+  hideLogin: boolean =  false;
 
   constructor(public af: AngularFire,
     public router: Router,
@@ -36,11 +38,22 @@ export class AppComponent {
     this.af.auth.subscribe(auth => {
 
       if (auth) {
-        this.name = auth;
         this.hide = false;
-        console.log(auth)
+        this.hideLogin = true
+        this.af.database.object(`user/${auth.uid}`)
+          .subscribe(info =>{
+            this.user = [];
+            this.user.push({
+              'email': info.email,
+              'name': info.name,
+              'admin': info.admin
+            })
+            this.admin = info.admin;
+            console.log(this.admin);
+          })
       } else {
         this.hide = true;
+        this.hideLogin = false;
       }
     });
   }
@@ -58,7 +71,7 @@ export class AppComponent {
   }
 
   showLoggedOutSnack() {
-      this.mdlSnackbarService.showToast("You are legged out now", 4000);
+      this.mdlSnackbarService.showToast("You are logged out now", 4000);
     }
 
   showAlert() {

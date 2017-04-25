@@ -582,6 +582,7 @@ a img {
     order: 1;
     width: 240px;
     transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-top: 10px;
 }
 
 .android-navigation-container:hover {
@@ -1030,15 +1031,17 @@ a img {
 }
 
 .avatar {
-    left: 26px;
+    left: 0;
     border-radius:100%;
     color: #fff;
     background-color: #f39c12;
-    margin-top: 3px;
+    margin-top: -12px;
     width: 45px;
     height: 45px;
     font-size: 18px;
     text-align: center;
+    position: relative;
+    float: right;
 
 }
 
@@ -1064,7 +1067,7 @@ a img {
      padding-top: 5px;
      padding-bottom: 5px;
      padding-left: 10px;
-      margin-top: 2px;
+     margin-top: 2px;
  }
 
 /*.gb_ha {

@@ -13,15 +13,17 @@ export class SplitUserEmailPipe implements PipeTransform {
 
 
   transform(value: String, color?: boolean, id?: any): String {
-    let nameSplit = value.split(".");
-    let initials = nameSplit[0].charAt(0).toUpperCase() + nameSplit[1].charAt(0).toUpperCase();
-    if (color) {
-      let div = document.getElementById(id);
-      let charIndex = initials.charCodeAt(0) - 40,
+    if(value != null || value != undefined){
+      let nameSplit = value.split(".");
+      let initials = nameSplit[0].charAt(0).toUpperCase() + nameSplit[1].charAt(0).toUpperCase();
+      if (color) {
+        let div = document.getElementById(id);
+        let charIndex = initials.charCodeAt(0) - 40,
         colourIndex = charIndex % 19;
         div.style.backgroundColor =  this.colours[colourIndex]
-    } 
-    return initials;
+      }
+      return initials;
+    }
 
   }
 

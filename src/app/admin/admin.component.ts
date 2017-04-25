@@ -11,13 +11,15 @@ import { Router } from '@angular/router';
 
 export class AdminComponent {
   users: FirebaseListObservable<any[]>;
-
+  user: FirebaseObjectObservable<any>;
   purchaseDates: FirebaseListObservable<any[]>;
   purchases: FirebaseListObservable<any[]>;
   eachPurch: any[] = [];
   acumPrice: number = 0;
   acumQuant: number = 0;
   actualUKey: any = "none";
+  hide: boolean = true;
+
 
 
   constructor(public af: AngularFire, private router: Router) {
@@ -53,15 +55,15 @@ export class AdminComponent {
       ).catch(
         (err) => {console.error(err)}
       );
-      
-    } 
+
+    }
 
   }
 
   getUserByKey(uKey: any): void {
 
     this.actualUKey = uKey;
-
+    this.user = this.af.database.object(`/user/${uKey}`);
     this.af.database.list(`/user/${uKey}/purchases`).subscribe(dates => {
       this.acumPrice = 0;
       this.acumQuant = 0;
@@ -83,4 +85,9 @@ export class AdminComponent {
       })
     })
   }
+
+  onClick(){
+    this.hide = !this.hide
+  }
+
 }

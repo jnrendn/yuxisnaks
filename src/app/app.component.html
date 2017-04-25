@@ -48,13 +48,17 @@
   <div class="android-header mdl-layout__header">
     <div class="mdl-layout__header-row">
       <div class="android-title mdl-layout-title">
-        <img class="android-logo-image" src="https://firebasestorage.googleapis.com/v0/b/yuxi-snacks-85cff.appspot.com/o/logo_yuxi_blanco.png?alt=media&token=ad86603d-3380-4f8b-9562-b625f6ebcbc8">
+        <a routerLink="/">
+          <img class="android-logo-image" src="https://firebasestorage.googleapis.com/v0/b/yuxi-snacks-85cff.appspot.com/o/logo_yuxi_blanco.png?alt=media&token=ad86603d-3380-4f8b-9562-b625f6ebcbc8">
+        </a>
       </div>
       <!-- Add spacer, to align navigation to the right in desktop -->
       <div class="android-header-spacer mdl-layout-spacer"></div>
       <!-- Mobile Logo -->
       <span class="android-mobile-title mdl-layout-title">
-        <img class="android-logo-image" src="https://firebasestorage.googleapis.com/v0/b/yuxi-snacks-85cff.appspot.com/o/logo_yuxi_blanco.png?alt=media&token=ad86603d-3380-4f8b-9562-b625f6ebcbc8">
+        <a routerLink="/">
+          <img class="android-logo-image" src="https://firebasestorage.googleapis.com/v0/b/yuxi-snacks-85cff.appspot.com/o/logo_yuxi_blanco.png?alt=media&token=ad86603d-3380-4f8b-9562-b625f6ebcbc8">
+        </a>
       </span>
 
       <!--Shopping cart button-->
@@ -98,11 +102,17 @@
       </button>-->
 
       <!--Login Icon-->
-      <button *ngIf="hide" id="login-mdl-icon" class="mdl-button mdl-js-button mdl-button--icon mdl-layout--small-screen-only">
-          <i class="material-icons">more_vert</i>
+      <button id="login-mdl-icon" class="mdl-button mdl-js-button mdl-button--icon mdl-layout--small-screen-only">
+        <i class="material-icons">more_vert</i>
       </button>
       <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="login-mdl-icon">
-        <li (click)="showAlert()" class="mdl-menu__item">Sign In</li>
+        <li style="background-color: #f39c12;" disabled class="mdl-menu__item mdl-menu__item--full-bleed-divider" *ngIf="hideLogin">
+          <span *ngFor="let usr of user " style="color: #fff;">{{usr.name}}</span>
+        </li>
+        <li *ngIf="!hideLogin" (click)="showAlert()" class="mdl-menu__item">Sign In</li>
+        <li *ngIf="hideLogin" routerLink="/product" class="mdl-menu__item">Products</li>
+        <li *ngIf="hideLogin && admin" routerLink="/admin" class="mdl-menu__item">Dashboard</li>
+        <li *ngIf="hideLogin" (click)="logout()" class="mdl-menu__item">Logout</li>
       </ul>
 
       <!--Login button-->
@@ -114,17 +124,20 @@
 
 
       <!--Avatar to show user-->
-      <div [hidden]="hide" class="android-navigation-container mdl-layout--large-screen-only">
-        <nav  id="user-button" class="android-navigation mdl-navigation">
-          <span class="chip-user-avatar">Yuxian!, juan.villa </span>
-          <div class="avatar">
-            <div style="padding-top: 12px;">JV</div>
-          </div>
-          <i style="font-size: 18px; color:#fff !important;" class="material-icons">&#xE5C5;</i>
-        </nav>
+      <div  [hidden]="hide" class="android-navigation-container mdl-layout--large-screen-only">
+          <nav  id="user-button" class="android-navigation mdl-navigation">
+            <div *ngFor="let usr of user" style="width:auto; height:auto" >
+              <span class="chip-user-avatar">Yuxian!, {{ usr.name}} </span>
+              <div class="avatar">
+                <div style="padding-top: 12px;">{{ usr.email |splitUserEmail }}</div>
+              </div>
+            </div>
+            <i style="font-size: 18px; color:#fff !important;" class="material-icons">&#xE5C5;</i>
+          </nav>
       </div>
       <ul  class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="user-button">
-        <li class="mdl-menu__item">Profile</li>
+        <li *ngIf="admin" class="mdl-menu__item" routerLink="/admin" >Dashboard</li>
+        <li class="mdl-menu__item" routerLink="/product">Products</li>
         <li class="mdl-menu__item">Purchase History</li>
         <li (click)="logout()" class="mdl-menu__item">Logout</li>
       </ul>
