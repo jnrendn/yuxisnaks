@@ -24,8 +24,16 @@ export class ProductComponent implements OnInit {
     }
 
     addProductToCart(key: any): void {
-        this.productService.products.forEach(item => this.product_selected = item[key - 1]);
+        // this.productService.products.forEach(item => this.product_selected = item[key - 1]);
+        // this.productService.addProduct(this.product_selected);
+
+        this.productService.products.subscribe(list => {
+          list.forEach(prod => {
+            if(prod.$key == key){
+              this.product_selected = prod
+            }
+          })
+        })
         this.productService.addProduct(this.product_selected);
     }
-
 }

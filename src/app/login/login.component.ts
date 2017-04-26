@@ -85,7 +85,10 @@ export class LoginComponent {
                       this.showSpinner = false;
                         // this.error =
                         this.mdlSnackbarService.showToast("This user has not email verified", 5000);
-                        this.af.auth.logout().then(() => { console.log('logged out'); })
+                        this.af.auth.logout().then(() => {
+                          // console.log('logged out');
+                          this.mdlSnackbarService.showToast("You cannot Login");
+                        })
                     }
 
 
@@ -124,7 +127,8 @@ export class LoginComponent {
                 success.auth.sendEmailVerification().then(
                   () => {
                     this.af.database.object(`/user/${success.auth.uid}`).set(this.userInfo);
-                    window.alert("We've sent you a confirmation email to: " + success.auth.email);
+                    // window.alert("We've sent you a confirmation email to: " + success.auth.email);
+                    this.mdlSnackbarService.showToast("We've sent you a confirmation email to: " + success.auth.email, 6000);
 
                     // formData.reset();
                   }).catch(
@@ -133,18 +137,6 @@ export class LoginComponent {
                   })
               }
             )
-
-            // .then(
-            //   (success) => {
-            //     this.af.database.object(`/user/${success.auth.uid}`).set(this.user);
-            //     console.log(success);
-            //     this.af.auth.subscribe(auth => {
-            //       if(auth) {
-            //         this.router.navigateByUrl('/user');
-            //       }
-            //     });
-            //   })
-
               .catch(
                 (err) => {
                   console.error(err);
@@ -190,7 +182,8 @@ export class LoginComponent {
     resetPassword() {
         Firebase.auth().sendPasswordResetEmail(this.email_rec).then((success) => {
         console.log(success);
-        this.resetMessage = "we've sent you an email of password reset";
+        // this.resetMessage = "we've sent you an email of password reset";
+        this.mdlSnackbarService.showToast("we've sent you an email of password reset", 7000);
       })
         .catch(
         (err) => {
@@ -199,40 +192,4 @@ export class LoginComponent {
         })
     }
 
-
-    // onSubmit(formData) {
-
-    //     if (formData.valid) {
-    //         this.af.auth.login({
-    //             email: formData.value.email,
-    //             password: formData.value.password
-    //         },
-    //             {
-    //                 provider: AuthProviders.Password,
-    //                 method: AuthMethods.Password,
-    //             }).then(
-    //             (success) => {
-    //                 if (success.auth.emailVerified) {
-    //                     this.af.database.object(`user/${success.auth.uid}`).subscribe(item => {
-    //                         if (item.admin) {
-    //                             this.router.navigateByUrl('/admin')
-    //                         } else {
-    //                             this.router.navigateByUrl('/product');
-    //                         }
-    //                     })
-
-    //                 } else {
-    //                     this.af.auth.logout().then(() => { console.log('logged out'); })
-    //                     alert('This user has not email verified');
-    //                 }
-
-
-    //             }).catch(
-    //             (err) => {
-    //                 alert(err.message);
-    //                 console.log(err);
-    //                 this.error = err;
-    //             })
-    //     }
-    // }
 }

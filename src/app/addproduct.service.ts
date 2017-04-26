@@ -31,7 +31,7 @@ export class AddproductService {
                 /*start looping through this.list_added_products to verify whether
                 * new comming product exist in this.list_added_products to turn existProd to true
                 */
-                if (this.list_added_products[i].id == new_product.id) {
+                if (this.list_added_products[i].$key == new_product.$key) {
                     existProd = true;
                     break;
                 }

@@ -8,50 +8,59 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-history.component.css']
 })
 
-export class UserHistoryComponent implements OnInit{
+export class UserHistoryComponent implements OnInit {
   userHistory: FirebaseListObservable<any[]>;
   purchases: FirebaseListObservable<any[]>;
   eachPurch: any[] = [];
-  acumPrice:number = 0;
-  acumQuant:number = 0;
+  acumPrice: number = 0;
+  acumQuant: number = 0;
+  priceByDate: number = 0;
+  arrayPriceByDate: number[] = [];
+  loggedIn: boolean;
 
-  ngOnInit(){ }
+  ngOnInit() {
+  this.getPathProducts();
+   }
 
-  constructor(public af: AngularFire, private router:Router) {
-      this.getPathProducts();
+  constructor(public af: AngularFire, private router: Router) {
+
   }
 
   getPathProducts() {
-      this.af.auth.subscribe(auth => {
-          if (auth) {
-              this.userHistory = this.af.database.list(`user/${auth.uid}/purchases`);
-              this.userHistory.subscribe( date => {
-                this.eachPurch = [];
-                date.forEach( pu =>  {
-                  this.purchases = this.af.database.list(`user/${auth.uid}/purchases/${pu.$key}`)
-
-                  this.purchases.subscribe(purch =>{
-                    purch.forEach(item =>{
-                      item.forEach(i => {
-                        this.acumPrice += (i.productPrice * i.UserproductCant);
-                        this.acumQuant += i.UserproductCant;
-                      })
-                    })
-                  })
-                  
-                  this.eachPurch.push({
-                    'date': pu.$key,
-                    'purchases' :this.purchases
-                  });
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        this.loggedIn = true;
+        this.userHistory = this.af.database.list(`user/${auth.uid}/purchases`);
+        this.userHistory.subscribe(dates => {
+          this.acumPrice = 0;
+          this.acumQuant = 0;
+          this.eachPurch = [];
+          dates.forEach(date => {
+            this.purchases = this.af.database.list(`user/${auth.uid}/purchases/${date.$key}`)
+            this.purchases.subscribe(purchases => {
+              this.priceByDate = 0;
+              purchases.forEach(purchase => {
+                purchase.forEach(i => {
+                  this.acumPrice += (i.productPrice * i.UserproductCant);
+                  this.priceByDate += (i.productPrice * i.UserproductCant);
+                  this.acumQuant += i.UserproductCant;
                 })
-
               })
+              this.arrayPriceByDate.push(this.priceByDate);
+              // console.log(date.$key, this.priceByDate);
+            })
 
-          } else {
-              this.router.navigateByUrl('/product');
-          }
-      });
+            this.eachPurch.push({
+              'date': date.$key,
+              'purchases': this.purchases
+            });
+          })
+
+        })
+
+      } else {
+        this.loggedIn = false;
+      }
+    });
   }
-
-
 }

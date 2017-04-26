@@ -1,24 +1,6 @@
-<!-- <div class="user-chip-container">
-
-<span *ngFor="let user of users | async">
-  <div *ngIf="user.purchases" (click)="getUserByKey(user.$key)" class="user-chip">
-    <div class="avatar" id="{{user.$key}}">
-      {{ user.email | splitUserEmail:true:user.$key }}
-    </div>
-    <div style="position: relative;  top: 10px; ">
-
-      <span style="font-size: 14px;">{{user.name}}</span>
-    </div>
-    <div style="position: relative;  top: 10px; font-size: 13px; color: #4f1949">
-      <p>{{user.email}}</p>
-    </div>
-  </div>
-</span>
-</div> -->
-
 <!-- Contact Chip -->
 <div *ngFor="let user of users | async" (click)="getUserByKey(user.$key)">
-  <mdl-chip *ngIf="user.purchases" mdl-label="{{ user.email }}" >
+  <mdl-chip *ngIf="user.purchases" mdl-label="{{ user.email }}" style="cursor:pointer; margin-left:45px;" >
     <span mdl-chip-contact class="mdl-color--blue mdl-color-text--white">{{user.email | splitUserEmail }}</span>
   </mdl-chip>
 </div>
@@ -27,37 +9,39 @@
 
 <div  style="position: absolute; right: 0; height: 600px;; width: 700px;  margin-bottom: 100px;">
 
-  <div *ngIf="acumPrice != 0 || acumQuant != 0" class="resume" style="background-color: rgba(0, 255,0, 0.1); text-align: center;
-   margin-top:20px; padding-bottom: 15px; position: fixed; right:100px; top:75px; width:300px; border:0.5px solid; z-index: 1;">
+  <div *ngIf="acumPrice != 0 || acumQuant != 0" class="resume" style="border-radius:25px; text-align: center;
+   margin-top:20px; padding-bottom: 15px; position: fixed; right:50px; top:120px; width:300px; border:0.5px solid lightgray; z-index: 1;">
   <h4>{{ (user | async)?.name }}</h4>
-    <p>Total precio = <strong style="font-size: 16px;">{{ acumPrice | currency:'cop' }}</strong></p>
-    <p>Total  articulos = <strong style="font-size: 16px;">{{ acumQuant }} articulos</strong> </p>
-    <span (click)="userPaid(actualUKey)" class="paybutton">PAY</span>
-    <span class="detail-btn" (click)="onClick()" >+ Detalles</span>
+    <p>Deuda total = <strong style="font-size: 16px; color: #3de809;">{{ acumPrice | currency:'cop' }}</strong></p>
+    <p>Total  articulos = <strong style="font-size: 16px; color: #3de809;">{{ acumQuant }} articulos</strong> </p>
+    <span (click)="userPaid(actualUKey)" class="paybutton">Pagar</span>
+    <span class="detail-btn" (click)="onClick()" style="cursor:pointer"> <span *ngIf="!hide">-</span> <span *ngIf="hide">+</span> Detalles</span>
   </div>
 
-  <div *ngIf="!hide" style="position:absolute; right:235px;">
-    <div *ngFor="let ep of eachPurch" class="detail" style="background-color: rgba(200, 2,0, 0.1); text-align: left; padding-left: 35px;
+  <div *ngIf="!hide" style="position:absolute; right:235px;top:-170px">
+    <div *ngFor="let ep of eachPurch" class="detail" style="text-align: left; padding-left: 35px;
       margin-right: 230px;">
       <h2 class="date">{{ep.date}}</h2>
-      <table class="mdl-data-table mdl-js-data-table">
+      <table class="mdl-data-table mdl-js-data-table" style="width:400px;">
         <div class="info" *ngFor="let purchase of ep.purchases | async; let i=index">
-          <span style="color: #4f1949; font-size: 18px;">Purchase #{{i+1}}</span>
+          <div style="height:20px;">
+            <span class="span-purchases">Purchase #{{i+1}}</span>
+          </div>
           <thead>
             <tr>
-              <th class="mdl-data-table__cell--non-numeric">Name</th>
-              <th>Quantity</th>
-              <th>Unit price</th>
-              <th>Total</th>
+              <th class="mdl-data-table__cell--non-numeric" >Name</th>
+              <th style="left: 65px;">Unit price</th>
+              <th style="right:-50px;">Quantity</th>
+              <th style="right:-45px;">Total</th>
             </tr>
           </thead>
-          <div *ngFor="let buys of purchase">
+          <div >
             <tbody>
-              <tr>
+              <tr *ngFor="let buys of purchase">
                 <td class="mdl-data-table__cell--non-numeric">{{ buys.productName }}</td>
-                <td>{{ buys.productPrice | currency:'cop' }}</td>
-                <td>{{ buys.UserproductCant }}</td>
-                <td>{{ buys.UserproductCant *  buys.productPrice | currency:'cop' }}</td>
+                <td style="left: 145px; position:absolute;">{{ buys.productPrice | currency:'cop' }}</td>
+                <td style="right: 115px;position:absolute;color: blueviolet;">{{ buys.UserproductCant }}</td>
+                <td style="right: 10px;position:absolute;color: blueviolet;">{{ buys.UserproductCant *  buys.productPrice | currency:'cop' }}</td>
               </tr>
             </tbody>
           </div>

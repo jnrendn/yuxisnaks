@@ -26,6 +26,8 @@ import { ActiveUser } from './active-user.service';
 import { SplitUserEmailPipe } from './split-user-email.pipe';
 
 import { MdlPopoverModule } from "@angular-mdl/popover";
+import { InventoryComponent } from './inventory/inventory.component';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { MdlPopoverModule } from "@angular-mdl/popover";
     UserHistoryComponent,
     AdminComponent,
     FooterComponent,
-    SplitUserEmailPipe
+    SplitUserEmailPipe,
+    InventoryComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,6 @@ import { MdlPopoverModule } from "@angular-mdl/popover";
   ],
   providers: [ AddproductService, ActiveUser ],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent]
+  entryComponents: [LoginComponent, CreateProductComponent]
 })
 export class AppModule { }

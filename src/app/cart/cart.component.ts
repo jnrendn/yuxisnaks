@@ -55,13 +55,6 @@ export class CartComponent implements OnInit {
     });
   }
 
-  showPwdNoMatch() {
-    this.mdlSnackbarService.showSnackbar({
-      message: "Password don't match",
-      timeout: 5000
-    });
-  }
-
     showAlert() {
 
     let pDialog = this.dialog.showCustomDialog({
@@ -145,8 +138,11 @@ export class CartComponent implements OnInit {
 
       } else {
         for (let i = 0; i < productsCantBuy.length; i++) {
-          alert(productsCantBuy[i].product + " doesn't have enough stock, please make sure abount" +
-            "amount to buy, please buy less than or equal to" + productsCantBuy[i].realQuant);
+
+          this.mdlSnackbarService.showToast(productsCantBuy[i].product + " doesn't have enough stock, please make sure about" +
+            "amount to buy, please buy less than or equal to" + productsCantBuy[i].realQuant , 7000);
+          // alert(productsCantBuy[i].product + " doesn't have enough stock, please make sure about" +
+          //   "amount to buy, please buy less than or equal to" + productsCantBuy[i].realQuant);
         }
       }
 

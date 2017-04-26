@@ -9,6 +9,7 @@ import { ResetPasswordComponent } from './resetpassword/reset-password.component
 import { UserHistoryComponent } from './userHistory/user-history.component';
 import { AdminComponent } from './admin/admin.component';
 import { CartComponent } from './cart/cart.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 const routes: Routes = [
     { path:'', redirectTo: '/product', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
     { path: 'reset' , component: ResetPasswordComponent },
     { path: 'history', component: UserHistoryComponent },
     { path: 'admin', component: AdminComponent },
-    { path: 'cart', component: CartComponent }
+    { path: 'cart', component: CartComponent },
+    { path: 'inventory', component: InventoryComponent }
 ];
 
 @NgModule({

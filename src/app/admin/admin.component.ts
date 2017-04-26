@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 
+import { MdlSnackbarService, MdlDialogOutletService, MdlDialogService } from "angular2-mdl";
+import {  } from "angular2-mdl";
+
 @Component({
   selector: 'my-admin',
   templateUrl: './admin.component.html',
@@ -22,7 +25,12 @@ export class AdminComponent {
 
 
 
-  constructor(public af: AngularFire, private router: Router) {
+  constructor(
+    public af: AngularFire,
+    private router: Router,
+    private mdlSnackbarService: MdlSnackbarService,
+    public mdlDialogService: MdlDialogService
+  ) {
     this.af.auth.subscribe(auth => {
       if (auth) {
         this.getAllUsers();
@@ -47,17 +55,18 @@ export class AdminComponent {
   }
 
   userPaid(key: any): void {
-    if(confirm("are you sure this user is already paying?")){
-      this.af.database.object(`/user/${key}/purchases`).remove().then(
-        (success) => {
-          console.info('user purchase history has been deleted', success);
-        }
-      ).catch(
-        (err) => {console.error(err)}
-      );
-
-    }
-
+    let showAlert = this.mdlDialogService.confirm('Desea continuar con el pago?', 'No', 'Si');
+      showAlert.subscribe( () =>{
+        this.af.database.object(`/user/${key}/purchases`).remove().then(
+          (success)=>{
+             this.mdlSnackbarService.showToast('Deuda borrada', 5000);
+          }
+        )
+      },
+      (err: any) =>{
+        this.mdlSnackbarService.showToast('No se ralizó el pago', 5000);
+      }
+    )
   }
 
   getUserByKey(uKey: any): void {
